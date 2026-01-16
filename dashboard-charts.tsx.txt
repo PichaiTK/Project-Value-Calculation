@@ -1,0 +1,57 @@
+"use client"
+
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis, CartesianGrid } from "recharts"
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+
+const data = [
+  { time: "00:00", latency: 45, users: 400 },
+  { time: "04:00", latency: 52, users: 300 },
+  { time: "08:00", latency: 38, users: 900 },
+  { time: "12:00", latency: 65, users: 1200 },
+  { time: "16:00", latency: 48, users: 1500 },
+  { time: "20:00", latency: 42, users: 1100 },
+  { time: "23:59", latency: 50, users: 800 },
+]
+
+export function DashboardCharts() {
+  return (
+    <ChartContainer
+      config={{
+        latency: {
+          label: "Latency (ms)",
+          color: "var(--primary)",
+        },
+        users: {
+          label: "Active Users",
+          color: "var(--chart-2)",
+        },
+      }}
+      className="h-[300px] w-full"
+    >
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={data}>
+          <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="hsl(var(--muted-foreground) / 0.1)" />
+          <XAxis dataKey="time" stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+          <YAxis stroke="hsl(var(--muted-foreground))" fontSize={12} tickLine={false} axisLine={false} />
+          <ChartTooltip content={<ChartTooltipContent />} />
+          <Line
+            type="monotone"
+            dataKey="latency"
+            stroke="var(--color-latency)"
+            strokeWidth={2}
+            dot={false}
+            activeDot={{ r: 4, strokeWidth: 0 }}
+          />
+          <Line
+            type="monotone"
+            dataKey="users"
+            stroke="var(--color-users)"
+            strokeWidth={2}
+            dot={false}
+            activeDot={{ r: 4, strokeWidth: 0 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </ChartContainer>
+  )
+}
