@@ -1,0 +1,60 @@
+import { ShopContainer, type Product } from "@/components/shop-items"
+
+const mockProducts: Product[] = [
+  {
+    id: "p1",
+    name: "Cyberpunk Hoodie v2",
+    price: 89.99,
+    image: "/cyberpunk-hoodie-futuristic-clothing.jpg",
+    category: "Apparel",
+    stock: 12,
+  },
+  {
+    id: "p2",
+    name: "Pro Streamer Desk Mat",
+    price: 34.5,
+    image: "/neon-desk-mat-gaming-setup.jpg",
+    category: "Accessories",
+    stock: 45,
+  },
+  {
+    id: "p3",
+    name: "Limited Edition Badge",
+    price: 15.0,
+    image: "/gold-medal-badge-award.jpg",
+    category: "Digital",
+    stock: 1000,
+  },
+  {
+    id: "p4",
+    name: "RGB Mechanical Keys",
+    price: 129.0,
+    image: "/mechanical-keyboard-rgb-lighting.jpg",
+    category: "Hardware",
+    stock: 5,
+  },
+  {
+    id: "p5",
+    name: "VR Interface Module",
+    price: 299.99,
+    image: "/vr-headset-future-technology.jpg",
+    category: "Hardware",
+    stock: 2,
+  },
+  {
+    id: "p6",
+    name: "Synthwave Vinyl Pack",
+    price: 45.0,
+    image: "/vinyl-record-synthwave-aesthetic.jpg",
+    category: "Media",
+    stock: 20,
+  },
+]
+
+export default function ShopPage() {
+  return (
+    <div className="p-8 max-w-7xl mx-auto">
+      <ShopContainer products={mockProducts} />
+    </div>
+  )
+}
