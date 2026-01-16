@@ -1,0 +1,47 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Activity, Users, ShoppingBag, Terminal } from "lucide-react"
+import { StatsCard, AlertItem } from "@/components/dashboard-items"
+import { DashboardCharts } from "@/components/dashboard-charts"
+
+export default function Dashboard() {
+  return (
+    <div className="p-8 space-y-8 bg-background">
+      <div className="flex items-center justify-between">
+        <h1 className="text-3xl font-bold text-primary tracking-tight">System Overview</h1>
+        <div className="flex items-center gap-2 px-3 py-1 bg-primary/10 border border-primary/20 rounded-full">
+          <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          <span className="text-xs font-mono text-primary">LIVE STATUS: NOMINAL</span>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatsCard title="Realtime Users" value="1,284" icon={Users} trend="+12%" color="text-cyan-400" />
+        <StatsCard title="System Health" value="99.98%" icon={Activity} trend="Stable" color="text-emerald-400" />
+        <StatsCard title="Daily Revenue" value="$4,392" icon={ShoppingBag} trend="+8%" color="text-pink-400" />
+        <StatsCard title="Audit Events" value="12.4k" icon={Terminal} trend="+2.1k" color="text-purple-400" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <Card className="lg:col-span-2 border-border/50 bg-card/50 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-lg">Latency & Traffic Metrics</CardTitle>
+          </CardHeader>
+          <CardContent className="h-[300px] border-t border-border/50 pt-6">
+            <DashboardCharts />
+          </CardContent>
+        </Card>
+
+        <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+          <CardHeader>
+            <CardTitle className="text-lg">Recent Alerts</CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <AlertItem type="critical" msg="DB Latency Spike in us-east-1" time="2m ago" />
+            <AlertItem type="warning" msg="Unusual login volume (ID: 9284)" time="15m ago" />
+            <AlertItem type="success" msg="Weekly backup completed" time="1h ago" />
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
